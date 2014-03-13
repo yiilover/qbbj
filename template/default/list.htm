@@ -1,3 +1,4 @@
+
 <div class="wh">
     <div id="menu">
         <ul id="nav">
@@ -37,38 +38,26 @@
 </div>
 <div class="mainB">
     <ul>
+<!--
+<?php
+foreach($listdb_moresort AS $r ){
+foreach($r['article'] AS $v){
+print <<<EOT
+-->
         <li>
-            <h2>商品名称及编码</h2>
+            <h2>{$v[title]}</h2>
             <a href="#"><img src="images/img2.png" width="170" height="160" /></a>
             <p>商品简要说明商品简要说明
                 商品简要说明商品简要说明
                 商品简要说明商品简要说明
                 商品简要说明...<a href="#">more</a></p>
         </li>
-        <li>
-            <h2>商品名称及编码</h2>
-            <a href="#"><img src="images/img2.png" width="170" height="160" /></a>
-            <p>商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明...<a href="#">more</a></p>
-        </li>
-        <li>
-            <h2>商品名称及编码</h2>
-            <a href="#"><img src="images/img2.png" width="170" height="160" /></a>
-            <p>商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明...<a href="#">more</a></p>
-        </li>
-        <li>
-            <h2>商品名称及编码</h2>
-            <a href="#"><img src="images/img2.png" width="170" height="160" /></a>
-            <p>商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明商品简要说明
-                商品简要说明...<a href="#">more</a></p>
-        </li>
+<!--
+EOT;
+}}
+?>
+-->
         <p class="pro_bt"><a href="#"><img src="images/morebt.png" width="82" height="46" /></a><a href="#"><img src="images/cxbt.png" width="125" height="46" /></a></p>
     </ul>
 </div>
+
