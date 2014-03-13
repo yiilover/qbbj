@@ -1,0 +1,221 @@
+<!--
+<?php
+print <<<EOT
+-->
+<style type="text/css">
+<!--
+#comment_title{
+	margin-bottom:10px;
+}
+#comment_title dt,#comment_title dd{
+	text-align:center;
+}
+#comment_title dt{
+	line-height:30px;
+}
+#comment_title dt a{
+	font-size:14px;
+	font-weight:bold;
+}
+#comment_title dd{
+	line-height:20px;
+}
+.dragCont{
+	border:#DDD solid 1px;
+}
+.dragCont .head{
+	background:url($webdb[www_url]/images/default/b1t.jpg)left 3px repeat-x;
+	height:30px;
+}
+.dragCont .head .tag{
+	float:left;
+	padding:2px 0 0 15px;
+	line-height:28px;
+	font-size:14px;
+	font-weight:bold;
+}
+.dragCont .cont{
+	padding:10px;
+}
+.dragCont .cont .list{
+	height:25px;
+	line-height:25px;
+	overflow:hidden;
+}
+.MainTable .SideR{
+	width:30%;
+	padding-left:10px;
+}
+.FormTable .tdL{
+	width:120px;
+	text-align:right;
+	line-height:30px;
+}
+.FormTable .tdR{
+	padding:5px;
+}
+.listIcon{
+	height:20px;
+}
+.listIcon img {float:left;filter:Alpha(opacity=50);opacity: 0.5;border:1px solid #EDF8DD}
+.listIcon img.ck {filter:Alpha(opacity=100);opacity: 1;border:1px solid #FF9900;}
+-->
+</style>
+<dl id="comment_title">
+	<dt><a href="$webdb[www_url]$webdb[path]/bencandy.php?fid=$fid&id=$id" target="_blank">$rsdb[title]</a></dt>
+    <dd>本评论只代表{$webdb[webname]}网友个人观点，不代表{$webdb[webname]}观点</dd>
+</dl> 
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="MainTable">
+  <tr>
+    <td class="MainL">
+    	<div class="dragCont">
+        	<div class="head"><div class="tag">网友评论</div></div>
+            <div class="cont">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+document.write('<span id="comment_show">$Load_Msg</span>');
+document.write('<div style="display:none;"><iframe src="$webdb[www_url]/do/comment_ajax.php?fid=$fid&aid=$id&iframeID=comment_show" width=0 height=0 name="comment_show"></iframe></div>');
+//-->
+</SCRIPT>
+				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="FormTable">
+                <form name="form_comment" id="form_comment" method="post" target="comment_show" action="$webdb[www_url]/do/comment_ajax.php?fid=$fid&aid=$id&iframeID=comment_show">
+<!--
+EOT;
+$display=$lfjdb?"style=\"display:none;\"":"";
+print <<<EOT
+-->
+                 <tr $display>
+                  <td class="tdL">帐号：</td>
+                  <td class="tdR">
+                  	<input type="text" name="username" id="comment_username" size="12">
+                    密码：
+                    <input type="password" name="password" id="comment_password" size="12">
+                    (<a href="$webdb[www_url]/do/reg.php" target="_blank"><u>新用户注册</u></a>)
+                  </td>
+                 </tr>
+<!--
+EOT;
+$displays=($web_admin || !$groupdb[CommentArticleYzImg])?"style=\"display:none;\"":"";
+print <<<EOT
+-->
+                 <tr id="comment_yzimg_tr" $displays>
+                  <td class="tdL">验证码：</td>
+                  <td class="tdR">
+<input id="yzImgNum" type="text" name="yzimg" size="8"> 
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+document.write('<img id="yz_Img" name="imageField" onclick="this.src=this.src+Math.random();" src="$webdb[www_url]/do/yzimg.php?'+Math.random()+'">');
+//-->
+</SCRIPT>
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="tdL">表情：</td>
+                  <td class="tdR">
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+$(function(){
+	$(".listIcon img:eq(0)").addClass("ck");
+	$(".listIcon img").click(function(){
+		var num=$(".listIcon img").index(this)+1;
+		$(".listIcon img").removeClass("ck");
+		$(this).addClass("ck");
+		$(".commentface").val(num);
+	});
+});
+//-->
+</SCRIPT>
+            	<div class="listIcon">
+<!--
+EOT;
+for($i=1;$i<15;$i++){
+print <<<EOT
+-->
+					<img src="$webdb[www_url]/images/default/faceicon/$i.gif" width="20" height="20">		
+<!--
+EOT;
+}
+print <<<EOT
+-->
+					<input name="commentface" type="hidden" class="commentface" value="1">
+                </div> 
+                  </td>
+                 </tr>
+                 <tr>
+                  <td class="tdL">内容：</td>
+                  <td class="tdR"><textarea name="content" cols="50" rows="5" id="comment_content" onKeyDown="quickpost(event)"></textarea></td>
+                 </tr>
+                 <tr>
+                  <td class="tdL">
+<script language="JavaScript">
+<!--
+cnt = 0;
+function quickpost(event){
+	if((event.ctrlKey && event.keyCode == 13)||(event.altKey && event.keyCode == 83)){
+		cnt++;
+		if (cnt==1){
+			post_comment();
+		}else{
+			alert('内容正在提交...');
+		}
+	}	
+}
+function post_comment(){
+	if(document.getElementById("comment_yzimg_tr").style.display==''){
+		if(document.getElementById("yzImgNum").value==''){
+			alert('验证码不能为空!');
+			return false;
+		}
+	}
+	if(document.getElementById("comment_content").value==''){
+		alert('内容不能为空!');
+		return false;
+	}
+	document.getElementById("form_comment").submit();
+	document.getElementById("comment_content").value='';
+	if(document.getElementById("yzImgNum")!=null){
+		document.getElementById("yzImgNum").value='';
+		document.getElementById("yz_Img").src="$webdb[www_url]/do/yzimg.php?"+Math.random();;
+	}
+	limitTime=parseInt('$webdb[CommentTime]');
+	limitComment();
+	
+}
+//-->
+</script>
+                  </td>
+                  <td class="tdR">
+                  <input type="button" id="comment_submit" onclick="post_comment()" name="Submit" value="提交" class="button">
+              <input type="hidden" name="action" value="post">
+                  </td>
+                 </tr>
+                </form>
+                </table>
+            </div>
+        </div>
+    </td>
+    <td class="SideR">
+    	<div class="dragCont">
+        	<div class="head"><div class="tag">热门评论主题</div></div>
+            <div class="cont">
+<!--
+EOT;
+$listdb=Get_article(15,42,'comments');
+foreach($listdb AS $rs){
+print <<<EOT
+-->
+                <div class="list">·<a href="comment.php?fid=$rs[fid]&id=$rs[aid]">$rs[title]</a></div>
+<!--
+EOT;
+}print <<<EOT
+-->
+            </div>
+        </div>
+    </td>
+  </tr>
+</table>
+<!--
+EOT;
+?>
+-->
+  

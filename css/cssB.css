@@ -1,0 +1,113 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	
+}
+
+.exlist{
+	background-color:#F9EE70;
+	margin:30px auto;
+	padding:5px;
+	width:990px;
+	min-height:200px;
+	height:auto;
+	font-family:"微软雅黑";
+	-webkit-box-shadow:4px 4px 5px #333;/*webkit*/ 
+	-moz-box-shadow:4px 4px 5px #333;/*firefox*/     
+	box-shadow:4px 4px 5px #333;/*opera或ie9*/ 
+}
+
+#title{
+	width:200px;
+	margin:20px auto;
+}
+
+#title legend{
+	font-size:26px;
+}
+
+div.exlist_title{
+	background-color:#F9EE70;
+	width:980px;
+	height:20px;
+}
+
+div.exlist_title img{
+	float:right;
+	margin:-15px 10px;
+}
+
+/*-----------form-----------*/
+
+fieldset{
+	width:90%;
+	border:1px dashed #666;
+	margin:40px auto;
+}
+ 
+legend{
+	background-color:#F9EE70;
+	height:120px;
+	height:30px;
+	color:#630;
+	font-weight:bolder;
+	font-size:20px;
+	line-height:30px;
+	margin:-20px 10px 10px;
+	padding:0 10px;
+}
+  
+ 
+div.row{
+	margin:10px;
+	padding:5px;
+}
+ 
+div.row label{
+	height:20px;
+	font-size:16px;
+	line-height:20px;
+	margin:0 10px;
+}
+ 
+input.txt{
+	background-color:#F9EE70;
+	color:#333;
+	width:150px;
+	height:20px;
+	margin:0 10px;
+	font-size:16px;
+	line-height:20px;
+	border:none;
+	border-bottom:1px solid #565656;
+
+}
+ 
+input.txt:focus{
+	color:#333;
+	background-color: #FF0;
+	border-bottom:1px solid #F00;
+}
+ 
+select{
+	width:100px;
+}
+
+option{
+	text-align:center;
+}
+
+input.btn{
+	width:50px;
+	height:20px;
+	color:#000008B;
+	background-color: transparent;
+	border:0;
+	padding:0;
+}
+.tab{ width:850px; overflow:hidden; display:block; background:#fff;-moz-border-radius:8px;-webkit-border-radius:8px;border-right:solid 1px #ccc;-khtml-border-radius:8px;border-radius:8px; margin-bottom:20px; }
+.tab tr td{ text-align:center;border-bottom:solid 1px #ccc;border-left:solid 1px #ccc; color:#7d667d; font-size:14px; }
+.bgA{ background:#f0f0f0;}
+.formbt{ text-align:center;}
+.formbt a{ margin:0 10px;}

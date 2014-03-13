@@ -1,0 +1,72 @@
+@charset "gb2312";
+a{ text-decoration:none;}
+img{ border:none;margin:0px;}
+div,p{ margin:0 auto; padding:0px;}
+body{ background:url(../images/bodybg.png) repeat; margin:0px auto; padding:0px; font-size:12px;}
+ul,li,em{ list-style:none; margin:0px; font-style:normal; padding:0px;}
+html{ overflow-x:hidden;}
+.wh{ width:1200px; margin:0 auto;}
+.top{ background:#000; height:55px;}
+.top h1{ display:block; float:left; margin:3px 10px 0 5px;}
+.toptext{ line-height:55px; display:block; float:left; color:#fff; font-size:13px; font-weight:bold; width:390px;}
+.topnav{ width:690px; display:block; float:right; height:30px; line-height:30px; margin-top:25px; padding:0px;}
+.topnav li{ width:120px; margin-left:15px; display:block; float:left; background:#ffff00; text-align:center;}
+.topnav li a{ color:#858585; font-weight:bold; font-family:Arial, Helvetica, sans-serif;}
+.topnav li a:hover{ color:#F90;}
+
+.home{ background:url(../images/homebg.png) no-repeat; width:160px; height:30px; font-family:"Î¢ÈíÑÅºÚ"; line-height:30px; margin:15px 0 0 80px; text-align:center;}
+.home a{color:#000;} 
+.mainAle{ width:470px; display:block; float:left; padding:35px 0 0 140px;}
+.mainAle h2{ line-height:26px; font-size:17px; margin-bottom:15px; color:#2a2e39; font-family:"Times New Roman", Times, serif; font-weight:lighter; }
+.mainAle label{ font-size:17px; color:#2a2e39; display:block; height:30px; line-height:30px; font-family:"Times New Roman", Times, serif;   }
+.inputA { display:block; width:420px; height:38px; line-height:38px; border:solid 1px #ccc;font-size:15px; color:#2a2e39; margin-bottom:10px;}
+
+.inputB { display:block; width:420px; height:200px; line-height:24px; border:solid 1px #ccc;font-size:15px; color:#2a2e39; margin-bottom:10px; margin-left:0px;}
+.inp_bta{ display:block; width:220px; margin:20px 0 0 0; height:60px;}
+.mainAri{ width:500px; display:block; float:right; }
+.mainAri h2{ font-size:30px;  color:#626262; font-family:"Times New Roman", Times, serif; font-weight:lighter; margin:90px 0 35px 0;}
+.map{ background:url(../images/ico1.png) no-repeat 0 10px; margin-top:15px; padding-left:30px;}
+.map h3{ height:40px; line-height:40px; font-size:20px;font-family:"Times New Roman", Times, serif; font-weight:lighter;}
+.map p{ margin-bottom:20px; font-size:15px;font-family:"Times New Roman", Times, serif; color:#626262; }
+.map p span{ font-size:15px; color:#00aeff;}
+.foot{ height:30px; background:#000; clear:both; line-height:30px;}
+.foot p{ display: block; float:left; color:#8a8989;}
+.footer{ width:950px; padding-left:250px;}
+.foot p img{ margin:5px 20px 0 0;}
+
+
+/*menu*/
+#menu {margin:30px 15px 50px 80px; display:block; float:right; height:34px;}
+#nav {display:block;}
+#nav .mainlevel {float:left; background:#3f240e; text-align:center; display:block;}
+#nav .mainlevel a {color:#fff; text-decoration:none; line-height:34px; height:34px; text-align:center; padding:0 30px; display:block; _width:48px;}
+#nav .mainlevel a:hover {color:#3f240e; text-decoration:none; background:#678900 url(../images/slide-pannel_14.png) 0 0 repeat-x;}
+#nav .mainlevel ul {position:absolute; display:none; *width:2000px;/*IE is great need, width>=li.length*/}
+#nav .mainlevel li {float:left; background:#3f240e;}
+#nav .mainlevel li a {padding:0 12px; line-height:24px; height:24px; display:block; _padding-bottom:6px;/*IE6 only*/}
+#nav .mainlevel li a:hover {color:#3f240e; text-decoration:none; background:#678900 url(../images/slide-pannel_14.png) 0 0 repeat-x;}
+#nav li a em/*input an em tag as a space*/ {padding:0 3px;}
+.note {color:#3f240e; border-right:1px solid #fff; background:#678900 url(../images/slide-pannel_14.png) 0 0 repeat-x; display:block; line-height:34px; padding:0 3em;}
+.Triangle_con { height:9px; background:url(../images/bird.png) 36px 0 no-repeat; display:block; _margin-bottom:-6px;/*IE6 only*/}
+.log {margin:100px auto; width:1000px; text-transform:capitalize; line-height:200%;}
+.sub_nav_01 li{ width:70px;}
+
+.mainB{ width:1200px; padding-top:20px; clear:both;}
+.mainB ul li{ width:300px; display:block;  float:left; text-align:center;}
+.mainB ul li h2{ font-size:14px; margin-bottom:10px;}
+.mainB ul li img{ border:solid 5px #fff;}
+.mainB ul li p{ width:160px; margin:0 auto; text-align:left; margin-top:10px; line-height:20px;}
+.mainB ul li p a{ font-weight:bold; color:#000;}
+.pro_bt{ clear:both; padding:20px 0; height:46px;}
+.pro_bt a{ display:block; float:right;}
+
+.mainC{ clear:both; width:400px; padding-right:100px; padding-left:700px; position:relative; padding-bottom:50px; min-height:430px;}
+.mainCimg{ position:absolute; top:30px; left:85px; width:555px; height:430px;}
+.mainC h3{ font-size:21px; text-align:center; padding:50px 0 15px 0px; width:400px; margin:0px;}
+.mainC p{ background:url(../images/ico2.png) no-repeat 0 5px; line-height:20px; padding-left:28px;margin-bottom:30px;}
+
+
+
+
+
+
