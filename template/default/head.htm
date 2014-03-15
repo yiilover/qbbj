@@ -1,10 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!--<?php
+if($webdb[ShowMenu]){
+	$sonmenu=@include_once(ROOT_PATH.'data/menu_cache.php');
+}else{
+	$returnjs="return ;";
+    $sonmenu="";
+}
+$GuideFid[$fid]=str_replace("<a href='$webdb[www_url]' class='guide_menu'>&gt;Ê×Ò³</a>","",$GuideFid[$fid]);
+$bodyondblclick = (function_exists('label_array')&&$web_admin&&!$MakeIndex) ?"dblclick_label();":"";
+print <<<EOT
+-->
 <head>
     <link href="/css/css.css" rel="stylesheet" type="text/css">
     <script language="javascript" type="text/javascript" src="/js/jquery-1.4.2.js"></script>
     <script language="javascript" type="text/javascript" src="/js/menu.js"></script>
-    <title>3</title>
+    <title>$titleDB[title]</title>
 </head>
 <body>
 <div class="top">
@@ -20,3 +31,7 @@
         </ul>
     </div>
 </div>
+<!--
+EOT;
+?>
+-->
