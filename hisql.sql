@@ -1,0 +1,1 @@
+delete from qb_sort where fid<41;

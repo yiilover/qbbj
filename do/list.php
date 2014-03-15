@@ -84,8 +84,8 @@ require(ROOT_PATH."inc/label_module.php");
 
 //显示子分类
 $listdb_moresort=ListMoreSort();
-$cattree = get_all_cat();
-print_r($cattree);die;
+$cattree = get_all_cat($fid);
+//print_r($cattree);die;
 //print_r($listdb_moresort);die;
 
 //列表页多少篇文章,栏目设置的话.以栏目为标准,否则与系统为标准,系统不存在就默认20

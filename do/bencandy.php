@@ -17,7 +17,8 @@ if(!$jobs&&$webdb[bencandy_cache_time]&&(time()-filemtime($Cache_FileName))<($we
 }
 
 get_guide($fid);	//栏目导航
-
+$cattree = get_all_cat($fid);
+//print_r($cattree);die;
 
 /**
 *获取文章

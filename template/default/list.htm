@@ -8,27 +8,45 @@ print <<<EOT
 <!--
 EOT;
 $i=0;
-foreach($listdb_moresort AS $r ){
+foreach($cattree AS $r ){
 $i++;
 print <<<EOT
 -->
-            <li class="mainlevel" id="mainlevel_0{$i}"><a href="#">$r[name]</a>
+            <li class="mainlevel" id="mainlevel_0{$i}">
 <!--
 EOT;
-foreach($r['article'] AS $rs){
+if($r[ishighlight]==0){
+print <<<EOT
+-->
+                <a href="list.php?fid=$r[fid]">$r[name]</a>
+<!--
+EOT;
+}else{
+print <<<EOT
+-->
+                <span class="note">$r[name]</span>
+<!--
+EOT;
+}
 print <<<EOT
 -->
 
             <ul class="sub_nav_01">
                 <span class="Triangle_con"></span>
-                <li><a href="#">小类1</a></li>
-                <li><a href="#">小类2</a></li>
-                <li><a href="#">小类3</a></li>
-            </ul>
-
+<!--
+EOT;
+foreach($r['sid'] AS $rs){
+print <<<EOT
+-->
+                <li><a href="list.php?fid=$rs[fid]">$rs[name]</a></li>
 <!--
 EOT;
 }
+print <<<EOT
+-->
+            </ul>
+
+
         </li>
 <!--
 EOT;

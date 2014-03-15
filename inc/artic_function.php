@@ -2344,24 +2344,28 @@ function Set_Title_PageNum($title,$page){
 	return "{$title}({$page})";
 }
 //·ÖÀàÊ÷
-function get_all_cat(){
-    global $db,$pre,$Fid_db,$webdb;
-    $query=$db->query("SELECT * FROM {$pre}sort ");
+function get_all_cat($fid){
+    global $db,$pre;
+    $query=$db->query("SELECT * FROM {$pre}sort WHERE fup=0");
     while($rs = $db->fetch_array($query)){
         $listdb[]=$rs;
     }
     foreach($listdb as $key=> $row){
+        $curpid = get_parent_id($fid);
+        $pid = get_parent_id($row['fid']);
+        $ishighlight = $curpid==$pid?1:0;
         $arr[$key] = array(
-            'pid' => get_parent_id($row['fid']),
+            'pid' => $pid,
             'fid' => $row['fid'],
             'name' => $row['name'],
-            'sid' => get_sub_cat($row['fid'])
+            'sid' => get_sub_cat($row['fid']),
+            'ishighlight' => $ishighlight,
         );
     }
     return $arr;
 }
 function get_parent_id($fid){
-    global $db,$pre,$Fid_db,$webdb;
+    global $db,$pre;
     $query=$db->query("SELECT fup FROM {$pre}sort WHERE fid=$fid ");
     $rs = $db->fetch_array($query);
     if(!empty($rs)){
@@ -2376,8 +2380,8 @@ function get_parent_id($fid){
     return $fup;
 }
 function get_sub_cat($fid){
-    global $db,$pre,$Fid_db,$webdb;
-    $query=$db->query("SELECT * FROM {$pre}sort WHERE fmid=103 AND fup=$fid ORDER BY fid ASC");
+    global $db,$pre;
+    $query=$db->query("SELECT * FROM {$pre}sort WHERE fup=$fid ORDER BY fid ASC");
     while($rs = $db->fetch_array($query)){
         $listdb[]=$rs;
     }
