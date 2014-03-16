@@ -61,8 +61,7 @@ print <<<EOT
     <ul>
 <!--
 EOT;
-foreach($listdb_moresort AS $r ){
-foreach($r['article'] AS $rs){
+foreach($listdb AS $rs ){
 print <<<EOT
 -->
         <li>
@@ -72,7 +71,7 @@ print <<<EOT
         </li>
 <!--
 EOT;
-}}
+}
 print <<<EOT
 -->
         <p class="pro_bt">

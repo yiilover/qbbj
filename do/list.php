@@ -85,14 +85,19 @@ require(ROOT_PATH."inc/label_module.php");
 //显示子分类
 $listdb_moresort=ListMoreSort();
 $cattree = get_all_cat($fid);
-//print_r($cattree);die;
-//print_r($listdb_moresort);die;
+
 
 //列表页多少篇文章,栏目设置的话.以栏目为标准,否则与系统为标准,系统不存在就默认20
 $rows=$fidDB[maxperpage]?$fidDB[maxperpage]:($webdb[list_row]?$webdb[list_row]:20);	
 
 $listdb=ListThisSort($rows,$webdb[ListLeng]?$webdb[ListLeng]:50);		//本栏目文章列表
-//print_r($listdb);die;
+if(!empty($listdb_moresort)){
+    foreach($listdb_moresort as $r){
+        foreach($r['article'] as $rs){
+            $listdb[]=$rs;
+        }
+    }
+}
 $page_sql=$webdb[viewNoPassArticle]?'':' AND yz=1 ';
 $erp=$fidDB[iftable]?$fidDB[iftable]:"";
 $showpage=getpage("{$pre}article$erp","WHERE fid=$fid $page_sql","list.php?fid=$fid",$rows);	//文章列表分页
