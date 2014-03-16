@@ -1,8 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+<?php
+print <<<EOT
+-->
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>首页</title>
+    <title>$titleDB[title]</title>
     <style type="text/css">
         *{ margin:0px auto; padding:0px; font-size:12px;}
         img{ border:none;margin:0px;}
@@ -21,14 +25,14 @@
 </head>
 <body>
 <div class="wh">
-    <div class="head"><h1>BEIJING HELI MECHANICAL SOURCING CO.,LTD</h1>
+    <div class="head"><h1>$webdb[webname]</h1>
         <p class="topbt"><a href="#"><img src="images/topbt.png" width="115" height="20" /></a></p></div>
     <div class="mainle"><img src="images/img1.png" width="770" height="409" />
-        <div class="footle">Copyright © BEIJING HELI MECHANICAL SOURCING CO.,LTD  All rights reserved</div>
+        <div class="footle">Copyright &copy $webdb[webname]  All rights reserved</div>
 
     </div>
     <div class="mainri">
-        <ul><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li>
+        <ul><li><a href="/list.php?fid=41"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li>
             <li><a href="#"><img src="images/logo.png"  width="213" height="135" ></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li><li><a href="#"><img src="images/nav1.png" name="picture" width="213" height="135" onMouseOver="this.src='images/logo.png'" onMouseOut="this.src='images/nav1.png'"></a></li>
         </ul>
         <div class="footri"><a href="#">EMAIL TO US</a></div>
@@ -39,3 +43,7 @@
 </div>
 </body>
 </html>
+<!--
+EOT;
+?>
+-->
