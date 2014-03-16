@@ -136,10 +136,11 @@ print <<<EOT
                 <input type="file" name="fileField" id="fileField" />
             </div>
         </fieldset>
-        <input type="hidden" name="qtype" value="1">
-        <input type="hidden" name="fid" value="$fid">
-        <input type="hidden" name="aid" value="$aid">
+        <input type="hidden" name="postdb[qtype]" value="1">
+        <input type="hidden" name="postdb[ofid]" value="$ofid">
+        <input type="hidden" name="postdb[aid]" value="$aid">
         <input type="hidden" name="step" value="post">
+        <input type="hidden" name="fid" value="$fid">
         <div class="formbt"><a href="#"><img src="/images/fqbt.png" width="125" height="46" /></a><a href="javascript:;" onclick="document.form1.submit()"><img src="/images/xjbt.png" width="125" height="44" /></a></div>  </form>
     <p>&nbsp;</p>
 </div>

@@ -1,7 +1,7 @@
 <?php
 require(dirname(__FILE__)."/"."global.php");
 require_once(ROOT_PATH."inc/encode.php");
-
+include(ROOT_PATH."inc/class.uploadfiles.php");
 
 if($step=="post"){
     if(!$webdb[ifOpenGuestBook]){
@@ -28,12 +28,12 @@ if($step=="post"){
     if ($postdb[email]&&!ereg("^[-a-zA-Z0-9_\.]+\@([0-9A-Za-z][0-9A-Za-z-]+\.)+[A-Za-z]{2,5}$",$postdb[email])) {
         showerr("邮箱不符合规则");
     }
-    if($postdb[weburl]&&!eregi(":\/\/",$postdb[weburl])){
-        $postdb[weburl]="http://$postdb[weburl]";
-    }
-    if($postdb[blogurl]&&!eregi(":\/\/",$postdb[blogurl])){
-        $postdb[blogurl]="http://$postdb[blogurl]";
-    }
+//    if($postdb[weburl]&&!eregi(":\/\/",$postdb[weburl])){
+//        $postdb[weburl]="http://$postdb[weburl]";
+//    }
+//    if($postdb[blogurl]&&!eregi(":\/\/",$postdb[blogurl])){
+//        $postdb[blogurl]="http://$postdb[blogurl]";
+//    }
     foreach($postdb AS $key=>$value){
         $postdb[$key]=filtrate($postdb[$key]);
     }
@@ -49,7 +49,7 @@ if($step=="post"){
 
     //过滤不健康的字
 //    $postdb[content]=replace_bad_word($postdb[content]);
-    $postdb[username]=replace_bad_word($postdb[username]);
+//    $postdb[username]=replace_bad_word($postdb[username]);
 
     //处理有人恶意用他人帐号做署名的
 //	if($postdb[username]){
@@ -58,12 +58,38 @@ if($step=="post"){
 //			showerr("此用户名为注册用户的帐号,请换一个");
 //		}
 //	}
-    print_r($postdb);
+//    $targetFolder = '/upload_files/guestbook';
+//    $verifyToken = md5('unique_salt' . $timestamp);
+//    $tempFile = $_FILES['Filedata']['tmp_name'];
+//    $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
+//    $_FILES['Filedata']['name']=strtotime(date('Y-m-d H:i:s',time())).strtolower(strrchr($_FILES['Filedata']['name'],"."));
+//    $ranstr=rand(100,999);
+//    $_FILES['Filedata']['name']='p_'.$ranstr.$_FILES['Filedata']['name'];
+//    $targetFile = rtrim($targetPath,'/') . '/' . $_FILES['Filedata']['name'];
+//    $fileTypes = array('jpg','jpeg','gif','png','doc','docx','xls','cdr','ppt','wps','zip','rar','txt','bmp','swf');
+//    $fileParts = pathinfo($_FILES['Filedata']['name']);
+//    print_r($_FILES);
+//    die;
+//    if (in_array($fileParts['extension'],$fileTypes)) {
+//        move_uploaded_file($tempFile,$targetFile);
+//        echo 'success.';
+//    } else {
+//        showerr("Invalid file type.");
+//    }
+if($_FILES){
+
+
+}else{
+    echo 'fail';
+}
+//print_r($_FILES);
+//    print_r($postdb);
+
     die;
 
-    $db->query("INSERT INTO `{$_pre}content` ( `ico` , `email` , `oicq` , `weburl` , `blogurl` , `uid` , `username` , `ip` , `content` , `yz` , `posttime` , `list`, `fid`, `mobphone`, `companyname`, `truename`, `phone`, `deadline`, `attach1`, `attach2`, `attach3`, `attachurl` )
+    $db->query("INSERT INTO `{$_pre}content` ( `ico` , `email` , `oicq` , `weburl` , `blogurl` , `uid` , `username` , `ip` , `content` , `yz` , `posttime` , `list`, `fid`, `mobphone`, `companyname`, `truename`, `phone`, `deadline`, `attach1`, `attach2`, `attach3`, `attachurl`, `ofid`, `aid` )
 	VALUES (
-	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$postdb[attachurl]','$postdb[companyname]')
+	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$postdb[attachurl]','$postdb[ofid]','$postdb[aid]')
 	");
     refreshto("?fid=$fid","谢谢你的留言",1);
 }elseif($action=="delete"&&$lfjuid){
@@ -136,6 +162,8 @@ while($rs = $db->fetch_array($query)){
     }
     $listdb[]=$rs;
 }
+$ofid = $_GET[ofid]?$_GET[ofid]:'';
+$aid = $_GET[aid]?$_GET[aid]:'';
 
 $chdb[main_tpl]=getTpl("index");
 $ch_fid	= $ch_pagetype = 0;
