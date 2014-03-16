@@ -21,17 +21,17 @@ print <<<EOT
             <legend>询价客户信息</legend>
             <div class="row">
                 <label>公司名称:</label>
-                <input style="width:500px" class="txt" type="text"  name="postdb[companyname]"/>
+                <input style="width:500px" class="txt" type="text"  name="postdb[companyname]" value="$rsdb[companyname]" disabled="true"/>
                 <label> 联系人:</label>
-                <input class="txt" style="width:130px" maxlength="16" type="text"  name="postdb[truename]"/>
+                <input class="txt" style="width:130px" maxlength="16" type="text"  name="postdb[truename]" value="$rsdb[truename]" disabled="true"/>
             </div>
             <div class="row">
                 <label>电子邮件:</label>
-                <input class="txt" style="width:230px" maxlength="26" type="text" name="postdb[email]"/>
+                <input class="txt" style="width:230px" maxlength="26" type="text" name="postdb[email]" value="$rsdb[email]" disabled="true"/>
                 <label>联系电话:</label>
-                <input class="txt" style="width:150px" maxlength="15" type="text" name="postdb[phone]"/>
+                <input class="txt" style="width:150px" maxlength="15" type="text" name="postdb[phone]" value="$rsdb[phone]" disabled="true"/>
                 <label>交货期:</label>
-                <input class="txt" style="width:130px" maxlength="20" type="text" name="postdb[deadline]"/>
+                <input class="txt" style="width:130px" maxlength="20" type="text" name="postdb[deadline]" value="$rsdb[deadline]" disabled="true"/>
             </div>
         </fieldset>
         <fieldset>
@@ -142,31 +142,35 @@ print <<<EOT
         <fieldset>
             <legend>询价中需要说明的要求</legend>
             <div class="row"> 1.
-                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach1]"/>
+                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach1]" value="$rsdb[attach1]" disabled="true"/>
             </div>
             <div class="row"> 2.
-                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach2]"/>
+                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach2]" value="$rsdb[attach2]" disabled="true"/>
             </div>
             <div class="row"> 3.
-                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach3]"/>
+                <input class="txt" style="width:820px" maxlength="100" type="text" name="postdb[attach3]" value="$rsdb[attach3]" disabled="true"/>
             </div>
         </fieldset>
         <fieldset>
             <legend>如有需要可以上传：附带图纸，零件表，技术标准等</legend>
             <div class="row">
-                <label>上传:</label>
-                <label for="fileField"></label>
-                <input type="file" name="fileField" id="fileField" />
+                <!--<label>上传:</label>-->
+                <!--<label for="fileField"></label>-->
+                <!--<input type="file" name="fileField" id="fileField" />-->
+                <a href="/upload_files/$rsdb[attachurl]" target="_blank">下载附件</a>
             </div>
         </fieldset>
         <input type="hidden" name="postdb[ofid]" value="$ofid">
         <input type="hidden" name="postdb[aid]" value="$aid">
         <input type="hidden" name="step" value="post">
         <input type="hidden" name="fid" value="$fid">
-        <div class="formbt"><a href="javascript:;" onclick="document.form1.reset()"><img src="/images/fqbt.png" width="125" height="46" /></a><a href="javascript:;" onclick="document.form1.submit()"><img src="/images/xjbt.png" width="125" height="44" /></a></div>  </form>
+        <!--<div class="formbt"><a href="javascript:;" onclick="document.form1.reset()"><img src="/images/fqbt.png" width="125" height="46" /></a><a href="javascript:;" onclick="document.form1.submit()"><img src="/images/xjbt.png" width="125" height="44" /></a></div>  </form>-->
     <p>&nbsp;</p>
 </div>
 
+<style>
+.row a{font-size:16px;font-family:"微软雅黑"; color: #333}
+</style>
 <!--
 EOT;
 ?>

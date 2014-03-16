@@ -58,40 +58,32 @@ if($step=="post"){
 //			showerr("此用户名为注册用户的帐号,请换一个");
 //		}
 //	}
-//    $targetFolder = '/upload_files/guestbook';
-//    $verifyToken = md5('unique_salt' . $timestamp);
-//    $tempFile = $_FILES['Filedata']['tmp_name'];
-//    $targetPath = $_SERVER['DOCUMENT_ROOT'] . $targetFolder;
-//    $_FILES['Filedata']['name']=strtotime(date('Y-m-d H:i:s',time())).strtolower(strrchr($_FILES['Filedata']['name'],"."));
-//    $ranstr=rand(100,999);
-//    $_FILES['Filedata']['name']='p_'.$ranstr.$_FILES['Filedata']['name'];
-//    $targetFile = rtrim($targetPath,'/') . '/' . $_FILES['Filedata']['name'];
-//    $fileTypes = array('jpg','jpeg','gif','png','doc','docx','xls','cdr','ppt','wps','zip','rar','txt','bmp','swf');
-//    $fileParts = pathinfo($_FILES['Filedata']['name']);
-//    print_r($_FILES);
-//    die;
-//    if (in_array($fileParts['extension'],$fileTypes)) {
-//        move_uploaded_file($tempFile,$targetFile);
-//        echo 'success.';
-//    } else {
-//        showerr("Invalid file type.");
-//    }
-if($_FILES){
 
-
-}else{
-    echo 'fail';
-}
-//print_r($_FILES);
-//    print_r($postdb);
-
-    die;
-
+	/*文件上传处理程序*/
+	if($_FILES){
+		$file = $_FILES['fileField'];
+		$fileArr['file'] = $file['tmp_name'];
+		$fileArr['name'] = $file['name'];
+		$fileArr['size'] = $file['size'];
+		$fileArr['type'] = $file['type'];
+		$file_name = 'f'.mt_rand(100,999).strtotime(date('Y-m-d H:i:s',time())).strtolower(strrchr($file['name'],"."));	
+		$filetypes = array('jpg','jpeg','gif','png','doc','docx','xls','xlsx','cdr','ppt','wps','zip','rar','txt','bmp');
+		$savepath = "../upload_files/guestbook/";
+		$maxsize = 0;
+		$overwrite = 0;
+		$upload = new upload($fileArr, $file_name, $savepath, $filetypes, $overwrite, $maxsize);
+		if (!$upload->run()) showerr($upload->errmsg());
+		$attachurl = "guestbook/" . $file_name;
+	}
     $db->query("INSERT INTO `{$_pre}content` ( `ico` , `email` , `oicq` , `weburl` , `blogurl` , `uid` , `username` , `ip` , `content` , `yz` , `posttime` , `list`, `fid`, `mobphone`, `companyname`, `truename`, `phone`, `deadline`, `attach1`, `attach2`, `attach3`, `attachurl`, `ofid`, `aid` )
 	VALUES (
-	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$postdb[attachurl]','$postdb[ofid]','$postdb[aid]')
+	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$attachurl','$postdb[ofid]','$postdb[aid]')
 	");
-    refreshto("?fid=$fid","谢谢你的留言",1);
+	$rurl = "?fid=$fid";
+	if($postdb[ofid]) $rurl .= "&ofid=$ofid";
+	if($postdb[aid]) $rurl .= "&aid=$aid";
+	$rmsg = "提交成功，我们会尽快和您联系";
+    refreshto($rurl,$rmsg,1);
 }elseif($action=="delete"&&$lfjuid){
     if($web_admin){
         $db->query("DELETE FROM `{$_pre}content` WHERE id='$id'");
@@ -99,8 +91,19 @@ if($_FILES){
         $db->query("DELETE FROM `{$_pre}content` WHERE id='$id' AND uid='$lfjuid' ");
     }
     refreshto("?fid=$fid","删除成功",1);
+}elseif($job=="show"&&$lfjuid){
+    $rsdb = $db->get_one("SELECT * FROM `{$_pre}content` WHERE id=$id");
+    $goods = array();
+    if($ofid){
+        $goods = get_query_goods($ofid,$aid);
+    }
+//    print_r($rsdb);
+//    die;
+    require(ROOT_PATH."inc/head.php");
+    require(getTpl("indexshow"));
+    require(ROOT_PATH."inc/foot.php");
+    exit();
 }
-
 
 $rows=$webdb[GuestBookNum]>0?$webdb[GuestBookNum]:10;
 if($page<1){
@@ -164,7 +167,10 @@ while($rs = $db->fetch_array($query)){
 }
 $ofid = $_GET[ofid]?$_GET[ofid]:'';
 $aid = $_GET[aid]?$_GET[aid]:'';
-
+$goods = array();
+if($ofid){
+    $goods = get_query_goods($ofid,$aid);
+}
 $chdb[main_tpl]=getTpl("index");
 $ch_fid	= $ch_pagetype = 0;
 $ch_module = $webdb[module_id]?$webdb[module_id]:7;
@@ -173,4 +179,19 @@ $ch_module = $webdb[module_id]?$webdb[module_id]:7;
 require(ROOT_PATH."inc/head.php");
 require(getTpl("index"));
 require(ROOT_PATH."inc/foot.php");
+
+function get_query_goods($ofid='',$aid=''){
+    global $db, $pre;
+    if($ofid){
+        if($aid){
+            $query = $db->query("SELECT * FROM `{$pre}article` WHERE aid=$aid");
+        }else{
+            $query = $db->query("SELECT * FROM `{$pre}article` WHERE fid=$ofid");
+        }
+        while($rs = $db->fetch_array($query)){
+            $goods[] = $rs;
+        }
+    }
+    return $goods?$goods:false;
+}
 ?>
