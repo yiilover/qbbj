@@ -53,25 +53,7 @@ document.write('<div align="center">');
         </tr>
       </table>
       
-      <table width="51%" border="0" cellspacing="0" cellpadding="0" class="map">
-        <tr> 
-          <td class="maphead"> 新手入门指南</td>
-        </tr>
-        <tr> 
-          <td class="middle" valign="top"> 1、要安装更多的网站风格,<a href="http://bbs.qibosoft.com/thread-forum-fid-10323.htm" target="_blank">请点击</a><br>
-            2、要升级程序,<a href="http://bbs.qibosoft.com/thread-forum-fid-10313.htm" target="_blank">请点击</a><br>
-            3、要学习采集网站内容数据,<a href="http://bbs.qibosoft.com/thread-forum-fid-10324.htm" target="_blank">请点击</a><br>
-            4、遇到更多的问题,无法解决,<a href="http://bbs.qibosoft.com/thread-forum-fid-10332.htm" target="_blank">请点击</a></td>
-        </tr>
-      </table>
-      <table width="51%" border="0" cellspacing="0" cellpadding="0" class="map">
-        <tr> 
-          <td class="maphead">官方重要公告</td>
-        </tr>
-        <tr> 
-          <td class="middle" valign="top"><marquee direction="up" scrollamount="1" height="35" onmouseout='if(document.all!=null){this.start()}' onmouseover='if(document.all!=null){this.stop()}'>$OfficialNotice</marquee></td>
-        </tr>
-      </table>
+
     </td>
     </tr>
 </table>
@@ -123,50 +105,7 @@ document.write('<div align="center">');
     <td width="50%">当前域名：$systemMsg[SERVER_NAME]</td>
   </tr>
 </table>
-<table width="100%" border="0" cellspacing="1" cellpadding="3" class="tablewidth">
-  <tr class="head"> 
-    <td height="23">开 发 团 队</td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td>官方网站： <a href="http://www.qibosoft.com" target="_blank">http://www.qibosoft.com</a> 
-    </td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td bgcolor="#FFFFFF">技术支持： <a href="http://bbs.qibosoft.com" target="_blank">http://bbs.qibosoft.com</a> 
-    </td>
-  </tr>
-  <tr bgcolor="#FFFFFF">
-    <td bgcolor="#FFFFFF">
-      <!--
-EOT;
-if(is_file(ROOT_PATH."inc/biz/biz.php")){$BIZ_URLDB['0']=base64_decode($BIZ_URLDB['0']);
-print <<<EOT
--->
-      版本类型： {$qibosoft_Edition} <A HREF="http://www.qibosoft.com/biz/impower.php" target="_blank"><font color=blue>商业授权</font></A><span help="1">（授权域名：{$BIZ_URLDB['0']}）</span><br>
-      <!--
-EOT;
-}else{
-print <<<EOT
--->
-      版本类型： {$qibosoft_Edition} <A HREF="http://www.qibosoft.com/biz/product.php" target="_blank"><font color=green>个人免费</font></A><span help="1">（适合个人学习，否则建议购买商业授权版，获取更好的服务和功能）</span><br> 
-<!--
-EOT;
-}
-print <<<EOT
---> 
-</td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td>系统设计： 龙城</td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td>团队管理： 雄军</td>
-  </tr>
-  <tr bgcolor="#FFFFFF"> 
-    <td>特别鸣谢： <a href="http://bbs.qibosoft.com/profile-bbs-action-show-uid-81067.html" target="_blank">lisheng51</a>、 
-      <a href="http://www.zxx6.com/" target="_blank">toopd</a>、七月 等等</td>
-  </tr>
-</table>
+
 <!--
 EOT;
 ?>
