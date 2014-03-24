@@ -79,6 +79,8 @@ if($step=="post"){
 	VALUES (
 	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$attachurl','$postdb[ofid]','$postdb[aid]')
 	");
+    /*发送邮件程序*/
+    require_once('phpmailer/class.phpmailer.php');
 	$rurl = "?fid=$fid";
 	if($postdb[ofid]) $rurl .= "&ofid=$ofid";
 	if($postdb[aid]) $rurl .= "&aid=$aid";
@@ -193,5 +195,25 @@ function get_query_goods($ofid='',$aid=''){
         }
     }
     return $goods?$goods:false;
+}
+
+function send_email($post) {
+    $mail = new PHPMailer();
+    $mail->IsSMTP();
+    $mail->Host = 'mail.qq.com';        //邮箱服务地址
+    $mail->SMTPAuth = true;
+    $mail->Username = '2267483099@qq.com';  //发件人邮箱
+    $mail->Password = 'admin123';  //发件人邮箱密码
+    $mail->From = '2267483099@qq.com';  //发件人邮箱
+    $mail->FromName = "2267483099@qq.com";       //发件人姓名
+    $mail->CharSet = "utf-8";
+    $mail->Encoding = "base64";
+    $mail->AddAddress($post['receive_email'], $post['name']);  // 收件人邮箱和姓名
+    $mail->AddReplyTo('2267483099@qq.com', 'qq.com');       //发件人邮箱,邮箱域名
+    $mail->IsHTML(true);  // send as HTML
+    $mail->Subject = $post['title'];        //邮件标题
+    $mail->Body = $post['content'];       //邮件内容
+    $mail->AltBody = "text/html";
+    return $mail->Send();
 }
 ?>
