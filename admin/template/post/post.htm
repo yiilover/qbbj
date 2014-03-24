@@ -86,12 +86,12 @@ function Addpicnews(strFileName){
 	}
 }
 </script>
-            <div id="post_top"><span id="button_base" onclick="choosetable('base')">基本信息</span><span id="button_other" onclick="choosetable('other')">其它设置</span> 
+            <div id="post_top"><span id="button_base" onclick="choosetable('base')">基本信息</span>
               <!--
 EOT;
 if(($groupdb[SetVote]||$web_admin)&&($job=="postnew"||($job=="edit"&&$rsdb[ifvote]))){print <<<EOT
 -->
-              <span id="button_vote" onclick="choosetable('vote')">投票设置</span> 
+              
               <!--
 EOT;
 }print <<<EOT
@@ -174,13 +174,15 @@ print <<<EOT
 -->
                     (<font color="#FF0000">*</font>) </td>
                   <td width="85%"> 
-                    <input type="text" name="postdb[title]" size="60" value="$rsdb[title]" id="title">
-                    &nbsp;&nbsp; <span close="0$web_admin$groupdb[SetTileColor]"> 
+                  
+                  <input type="text" name="postdb[title]" size="60" value="$rsdb[title]" id="title">
+                   <!--   &nbsp;&nbsp; <span close="0$web_admin$groupdb[SetTileColor]"> 
                     颜色: 
                     <input type="text" name="postdb[titlecolor]" style="background:$rsdb[titlecolor];" size="7" value="$rsdb[titlecolor]" id="titlecolor" onClick="foreColor_font();">
                     加粗: 
                     <input type="checkbox" name="postdb[fonttype]" value="1" $fonttype>
-                    </span>禁用评论:<input type="checkbox" name="postdb[forbidcomment]" value="1" $forbidcomment> </td>
+                    </span>禁用评论:<input type="checkbox" name="postdb[forbidcomment]" value="1" $forbidcomment>-->
+                     </td>
                 </tr>
                 <tr bgcolor="#FFFFFF" class="basetr"> 
                   <td  width="15%">关键字(标签)：</td>
@@ -239,14 +241,14 @@ print <<<EOT
                   <td  width="15%">来源：</td>
                   <td  width="85%"> 
                     <input type="text" name="postdb[copyfrom]" size="20" value="$rsdb[copyfrom]" id="copyfrom">
-                    <select name="select" onChange="MM_copyfrom(this)">
+<!--                    <select name="select" onChange="MM_copyfrom(this)">
                       <option value='' selected>常用来源站点</option>
 		  $copyfroms
                     </select>
                     <span close="0$web_admin"> 
                     <input type="checkbox" name="postdb[addcopyfrom]" value="1">
                     入库 [<a href="$webdb[admin_url]/index.php?lfj=copyfrom&job=list" target="_blank">来源管理</a>] 
-                    </span> 
+                    </span> -->
                     <script language="JavaScript">
 <!--
 function MM_copyfrom(selObj){ //v3.0
@@ -340,12 +342,13 @@ EOT;
                   <td  width="85%"> <span close="0$web_admin$groupdb[PassContribute]"> 
                     <input type="checkbox" name="postdb[yz]" value="1" $yz>
                     审核 </span> <span close="0$web_admin$groupdb[SetArticleTopCom]"> 
-                    <input type="checkbox" name="postdb[top]" value="1" $top>
+<!--                    <input type="checkbox" name="postdb[top]" value="1" $top>
                     置顶 
                     <input type="checkbox" name="postdb[levels]" value="1" $levels>
                     推荐 </span> 
                     <input type="checkbox" name="postdb[target]" value="1" $target>
-                    新窗口打开 $baseSpecial</td>
+                    新窗口打开 $baseSpecial-->
+                    </td>
                 </tr>
                 <SCRIPT LANGUAGE="JavaScript">
 <!--
@@ -370,7 +373,7 @@ EOT;
 }print <<<EOT
 -->
                 $Article_Module 
-                <tr bgcolor="#FFFFFF" class="basetr"> 
+                <tr bgcolor="#FFFFFF" class="basetr"  style="display:none"> 
                   <td  width="15%">工具箱：</td>
                   <td  width="85%"> 
                     <SCRIPT LANGUAGE="JavaScript">
@@ -547,7 +550,7 @@ EOT;
                 </tr>
               </table>
               
-        <table width="100%" border="0" cellspacing="1" cellpadding="3" class="borderTable" id="othertable">
+        <table width="100%" border="0" cellspacing="1" cellpadding="3" class="borderTable" id="othertable"  style="display:none">
           <!--
 EOT;
 if($job=="postnew"||$job=="edit"){
@@ -680,7 +683,7 @@ EOT;
             </td>
           </tr>
         </table>
-              <table width="100%" border="0" cellspacing="1" cellpadding="3" class="borderTable" id="votetable">
+              <table width="100%" border="0" cellspacing="1" cellpadding="3" class="borderTable" id="votetable" style="display:none">
                 <!--
 EOT;
 if($job=="postnew"||$job=="edit"){

@@ -1,7 +1,7 @@
 <?php
 !function_exists('html') && exit('ERR');
 unset($menu_partDB,$menudb,$menu_partDB);
-$base_menuName=array('base'=>'系统功能','article'=>'文章功能','member'=>'会员管理','module'=>'模块中心');
+$base_menuName=array('base'=>'系统功能','article'=>'文章功能','member'=>'会员管理','module'=>'模块中心','other'=>'插件管理');
 
 $menu_partDB = array(
 	'base'=>array('核心设置','网站常用功能管理','数据库工具','菜单管理'),

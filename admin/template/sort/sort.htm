@@ -21,12 +21,7 @@ $show_guide
 EOT;
 }else{print<<<EOT
 -->
-			你可以设置只显示以下部分栏目 [<a href="?lfj=$lfj&job=showsort&step=1&only=$only&mid=$mid" style="color:$article_show_step[1]">1级</a>] 
-              [<a href="?lfj=$lfj&job=showsort&step=2&only=$only&mid=$mid" style="color:$article_show_step[2]">2级以内</a>] 
-              [<a href="?lfj=$lfj&job=showsort&step=3&only=$only&mid=$mid" style="color:$article_show_step[3]">3级以内</a>] 
-              [<a href="?lfj=$lfj&job=showsort&step=4&only=$only&mid=$mid" style="color:$article_show_step[4]">4级以内</a>] 
-              [<a href="?lfj=$lfj&job=showsort&step=5&only=$only&mid=$mid"  style="color:$article_show_step[5]">5级以内</a>] 
-              [<a href="?lfj=$lfj&job=showsort&step=0&only=$only&mid=$mid"  style="color:$article_show_step[0]">全部</a>] 
+
 <!--
 EOT;
 }print<<<EOT
@@ -43,11 +38,9 @@ EOT;
 			<td width="6%" style="border-right:1px solid #fff;">类型</td>
 			<td width="4%" style="border-right:1px solid #fff;">记录</td>
 			<td width="6%" style="border-right:1px solid #fff;">发表</td>
-			<td width="6%" style="border-right:1px solid #fff;">静态</td>
             <td width="6%" style="border-right:1px solid #fff;">更改</td>
             <td width="6%" style="border-right:1px solid #fff;">内容</td>
             <td width="6%" style="border-right:1px solid #fff;">创建</td> 
-            <td width="6%" style="border-right:1px solid #fff;">标签</td>
             <td width="6%" style="border-right:1px solid #fff;">删除</td>
             <td width="6%" style="border-right:1px solid #fff;">排序</td>
           </tr>
@@ -63,7 +56,7 @@ print <<<EOT
           <tr class="trA $tr_class" onmouseover="this.className='trB $tr_class'" onmouseout="this.className='trA $tr_class'"> 
             <td width="4%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"><b><font color="#FF0000">$rs[fid]</font></b></td>
             <td width="34%" bgcolor="#FFFFFF" style="border-bottom:1px dotted #ccc;"> 
-              <a href="$webdb[www_url]/do/rss.php?fid=$rs[fid]" target="_blank"><img src="$webdb[www_url]/images/default/rss.gif" border="0"></a> 
+             
               <input type="checkbox" name="fiddb[{$rs[fid]}]" value="$rs[name]" style="border:0px;">
               $rs[icon]【<a href='$webdb[www_url]$webdb[path]/list.php?fid=$rs[fid]' target="_blank">{$rs[name]}</a>】<span class='sort_span'></span></td>
 			  
@@ -77,7 +70,7 @@ if($rs[type]==2){print <<<EOT
 EOT;
 }elseif($rs[type]==1){print <<<EOT
 -->
-              <a href="index.php?lfj=$lfj&job=$job&only=$only&mid=$mid&fid=$rs[fid]">大分类</a>
+              大分类
               <!--
 EOT;
 }else{print <<<EOT
@@ -120,7 +113,7 @@ EOT;
 }print <<<EOT
 -->
             </td>
-			<td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"><a href='?lfj=html&action=makehtml&fiddb[]=$rs[fid]' target="_blank" title="生成静态网页"><img alt='生成静态网页' src='images/plub.gif' border=0></a></td>
+
 			<td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"><a href='?lfj=$lfj&job=editsort&fid=$rs[fid]&only=$only&mid=$mid'><img alt='点击修改栏目设置' src='../member/images/button_edit.png' border=0></a></td>
             <td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"> 
               <!--
@@ -172,7 +165,7 @@ print <<<EOT
 EOT;
 }print <<<EOT
 </td>-->
-            <td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"><a href="index.php?lfj=$lfj&job=label&fid=$rs[fid]"><img alt='更新标签内容' src='images/icon_updatalabel.gif' border=0></a></td>
+
             <td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"><a href="?lfj=$lfj&action=delete&fid=$rs[fid]&only=$only&mid=$mid" onclick="return confirm('你确实要删除吗?不可恢复');"><img alt='点击删除' src='../member/images/del_icon2.gif' border=0></a></td>
             <td width="6%" bgcolor="#FFFFFF" align="center" style="border-bottom:1px dotted #ccc;"> 
               <input type='text' name='order[{$rs[fid]}]' value='$rs[list]' size='5'>
@@ -185,9 +178,7 @@ EOT;
         </table><div align="center" style="margin:10px;">$showpage</div>
         <div align="center"><br>
           <a href="javascript:" onClick="CheckAll('all')">全选</a>/<a href="javascript:" onClick='CheckAll()'>反选</a> 
-		   <input type="button" name="Submit2" value="生成静态" onclick="postlist('html')">
           <input type="button" name="Submit2" value="更改排序" onclick="postlist('list')">
-          <input type="button" name="Submit22" value="批量修改栏目" onclick="postlist('edit')">
           <SCRIPT LANGUAGE="JavaScript">
 <!--
 function postlist(t){

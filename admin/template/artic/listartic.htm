@@ -21,7 +21,7 @@ print <<<EOT
 
       <input type="button" name="Submit522" value="非精华" onclick="window.location.href='index.php?lfj=artic&job=listartic&fid=$fid&type=unlevels&only=$only&mid=$mid'">
 
-      <input type="button" name="Submit5222" value="图片主题" onClick="window.location.href='index.php?lfj=artic&job=listartic&fid=$fid&type=picurl&only=$only&mid=$mid'">
+
 
 	  <input type="button" name="Submit5222" value="回收站" onClick="window.location.href='index.php?lfj=artic&job=listartic&type=rubbish&only=$only&mid=$mid'">
 
@@ -53,7 +53,7 @@ print <<<EOT
 -->
     <tr bgcolor="#FFFFFF" class="trA" onmouseover="this.className='trB'" onmouseout="this.className='trA'"> 
       <td align="center">$rs[aid]</td>
-      <td > <a href="$webdb[www_url]/do/rss.php?fid=$rs[fid]&id=$rs[aid]" target="_blank"><img src="$webdb[www_url]/images/default/rss.gif" border="0"></a> 
+      <td > 
         <input type="checkbox" name="listdb[{$rs[aid]}]" value="$rs[title]">
         <a href="$webdb[www_url]$webdb[path]/bencandy.php?fid=$rs[fid]&aid=$rs[aid]"  style="color:$rs[titlecolor];" target="_blank">$rs[title]</a> $yz3</td>
       <td align="center"><a href="$webdb[www_url]$webdb[path]/list.php?fid=$rs[fid]" target="_blank">$rs[fname]</a></td>
@@ -126,15 +126,9 @@ EOT;
  
 		
         <input type="button" name="Submit42223" value="推荐" onclick="postdo('com')">
-		<input type="button" name="Submit42223" value="专题操作" onclick="postdo('special')">
-        <input type="button" name="Submit4" value="置顶" onclick="postdo('top')">
-        <input type="button" name="Submit422" value="提前" onclick="postdo('front')">
-        <input type="button" name="Submit42" value="标题彩色" onclick="postdo('color')">
-        <input type="button" name="Submit4222" value="沉底" onclick="postdo('bottom')">
         <input type="button" name="Submit42222" value="移动" onclick="postdo('move')">
         <input type="button" name="Submit422222" value="回收站还原" onClick="postdo('return')">
         <input type="button" name="Submit3" value="删除" onclick="postdo('delete')">
-        <input type="button" name="Submit422232" value="辅栏目" onClick="postdo('fusort')">
 		 <input type="button" name="Submit422232" value="排序" onClick="postdo('list')">
         <input type="hidden" name="jobs" value="0">
         <input type="hidden" name="only" value="$only">
