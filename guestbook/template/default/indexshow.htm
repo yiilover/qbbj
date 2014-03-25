@@ -157,7 +157,7 @@ print <<<EOT
                 <!--<label>上传:</label>-->
                 <!--<label for="fileField"></label>-->
                 <!--<input type="file" name="fileField" id="fileField" />-->
-                <a href="/upload_files/$rsdb[attachurl]" target="_blank">下载附件</a>
+                <a href="/admin/index.php?lfj=module_admin&dirname=guestbook&file=content&job=download&id=$rsdb[id]" target="_blank">下载附件</a>
             </div>
         </fieldset>
         <input type="hidden" name="postdb[ofid]" value="$ofid">

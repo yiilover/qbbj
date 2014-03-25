@@ -25,6 +25,9 @@ if($step=="post"){
 //	if($postdb[mobphone]&&!ereg("^1[0-9]{10}$",$postdb[mobphone])){
 //		showerr("手机号码不符合规则");
 //	}
+    if(!$postdb[email]){
+        showerr("邮箱不能为空");
+    }
     if ($postdb[email]&&!ereg("^[-a-zA-Z0-9_\.]+\@([0-9A-Za-z][0-9A-Za-z-]+\.)+[A-Za-z]{2,5}$",$postdb[email])) {
         showerr("邮箱不符合规则");
     }
@@ -59,15 +62,21 @@ if($step=="post"){
 //		}
 //	}
 
+
+
+
+
+
 	/*文件上传处理程序*/
-	if($_FILES){
-		$file = $_FILES['fileField'];
+    $file = $_FILES['fileField'];
+    $attachurl = '';
+	if($file['size']>0){
 		$fileArr['file'] = $file['tmp_name'];
 		$fileArr['name'] = $file['name'];
 		$fileArr['size'] = $file['size'];
 		$fileArr['type'] = $file['type'];
-		$file_name = 'f'.mt_rand(100,999).strtotime(date('Y-m-d H:i:s',time())).strtolower(strrchr($file['name'],"."));	
-		$filetypes = array('jpg','jpeg','gif','png','doc','docx','xls','xlsx','cdr','ppt','wps','zip','rar','txt','bmp');
+		$file_name = 'f'.mt_rand(100,999).strtotime(date('Y-m-d H:i:s',time())).strtolower(strrchr($file['name'],"."));
+        $filetypes = explode(' ',$webdb[upfileType]);
 		$savepath = "../upload_files/guestbook/";
 		$maxsize = 0;
 		$overwrite = 0;
@@ -75,13 +84,19 @@ if($step=="post"){
 		if (!$upload->run()) showerr($upload->errmsg());
 		$attachurl = "guestbook/" . $file_name;
 	}
-    $db->query("INSERT INTO `{$_pre}content` ( `ico` , `email` , `oicq` , `weburl` , `blogurl` , `uid` , `username` , `ip` , `content` , `yz` , `posttime` , `list`, `fid`, `mobphone`, `companyname`, `truename`, `phone`, `deadline`, `attach1`, `attach2`, `attach3`, `attachurl`, `ofid`, `aid` )
+    $db->query("INSERT INTO `{$_pre}content` ( `ico` , `email` , `oicq` , `weburl` , `blogurl` , `uid` , `username` , `ip` , `content` , `yz` , `posttime` , `list`, `fid`, `mobphone`, `companyname`, `truename`, `phone`, `deadline`, `attach1`, `attach2`, `attach3`, `attachurl`, `ofid`, `aid` , `goods_num`, `goods_spe`, `goods_remark`)
 	VALUES (
-	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$attachurl','$postdb[ofid]','$postdb[aid]')
+	'$face','$postdb[email]','$postdb[oicq]','$postdb[weburl]','$postdb[blogurl]','$lfjuid','$postdb[username]','$onlineip','$postdb[content]','$yz','$timestamp','$timestamp','$fid','$postdb[mobphone]','$postdb[companyname]','$postdb[truename]','$postdb[phone]','$postdb[deadline]','$postdb[attach1]','$postdb[attach2]','$postdb[attach3]','$attachurl','$postdb[ofid]','$postdb[aid]','$postdb[goods_num]','$postdb[goods_spe]','$postdb[goods_remark]')
 	");
+
+
     /*发送邮件程序*/
     require_once('phpmailer/class.phpmailer.php');
-	$rurl = "?fid=$fid";
+    $content .= "公司名称:".$postdb[companyname]."<br>联系人:".$postdb[truename]."<br>电子邮件:".$postdb[email]."<br>联系电话:".$postdb[phone]."<br>交货期:".$postdb[deadline]."<br>commodity code:".$postdb[goods_sn]."<br>name of commodity:".$postdb[title]."<br>number:".$postdb[goods_num]."<br>specification:".$postdb[specification]."<br>remarks:".$postdb[goods_remark]."<br>询价中需要说明的要求1:".$postdb[attach1]."<br>询价中需要说明的要求2:".$postdb[attach2]."<br>询价中需要说明的要求3:".$postdb[attach3];
+    $content = iconv('GBK','UTF-8',$content);
+    send_email($content);
+
+    $rurl = "?fid=$fid";
 	if($postdb[ofid]) $rurl .= "&ofid=$ofid";
 	if($postdb[aid]) $rurl .= "&aid=$aid";
 	$rmsg = "提交成功，我们会尽快和您联系";
@@ -197,22 +212,23 @@ function get_query_goods($ofid='',$aid=''){
     return $goods?$goods:false;
 }
 
-function send_email($post) {
+function send_email($content) {
+    global $webdb;
     $mail = new PHPMailer();
     $mail->IsSMTP();
-    $mail->Host = 'mail.qq.com';        //邮箱服务地址
+    $mail->Host = $webdb[MailServer];        //邮箱服务地址
     $mail->SMTPAuth = true;
-    $mail->Username = '2267483099@qq.com';  //发件人邮箱
-    $mail->Password = 'admin123';  //发件人邮箱密码
-    $mail->From = '2267483099@qq.com';  //发件人邮箱
-    $mail->FromName = "2267483099@qq.com";       //发件人姓名
+    $mail->Username = $webdb[MailId];  //发件人邮箱
+    $mail->Password = $webdb[MailPw];  //发件人邮箱密码
+    $mail->From = $webdb[MailId];  //发件人邮箱
+    $mail->FromName = "system";       //发件人姓名
     $mail->CharSet = "utf-8";
     $mail->Encoding = "base64";
-    $mail->AddAddress($post['receive_email'], $post['name']);  // 收件人邮箱和姓名
-    $mail->AddReplyTo('2267483099@qq.com', 'qq.com');       //发件人邮箱,邮箱域名
+    $mail->AddAddress($webdb[webmail], 'Dear');  // 收件人邮箱和姓名
+    $mail->AddReplyTo($webdb[MailId], '163.com');       //发件人邮箱,邮箱域名
     $mail->IsHTML(true);  // send as HTML
-    $mail->Subject = $post['title'];        //邮件标题
-    $mail->Body = $post['content'];       //邮件内容
+    $mail->Subject = $webdb[webname];        //邮件标题
+    $mail->Body = $content;       //邮件内容
     $mail->AltBody = "text/html";
     return $mail->Send();
 }

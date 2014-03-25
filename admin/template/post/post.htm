@@ -185,6 +185,10 @@ print <<<EOT
                      </td>
                 </tr>
                 <tr bgcolor="#FFFFFF" class="basetr"> 
+                    <td  width="15%">商品编号：</td>
+                    <td  width="85%">       <input type="text" name="postdb[goods_sn]" size="60" value="$rsdb[goods_sn]" id="title"> </td>           
+                </tr>
+                <tr bgcolor="#FFFFFF" class="basetr"> 
                   <td  width="15%">关键字(标签)：</td>
                   <td  width="85%"> 
                     <input type="text" name="postdb[keywords]" size="50" value="$rsdb[keywords]" id="keyword_s">
@@ -221,7 +225,7 @@ EOT;
 if(!$m_config[moduleSet][no_author]){
 print <<<EOT
 -->
-                <tr bgcolor="#FFFFFF" class="basetr"> 
+                <tr bgcolor="#FFFFFF" class="basetr" style="display:none;"> 
                   <td  width="15%">作者：</td>
                   <td  width="85%"> 
                     <input type="text" name="postdb[author]" size="15" value="$rsdb[author]">
@@ -237,7 +241,7 @@ EOT;
 if(!$m_config[moduleSet][no_from]){
 print <<<EOT
 -->
-                <tr bgcolor="#FFFFFF" class="basetr"> 
+                <tr bgcolor="#FFFFFF" class="basetr" style="display:none;"> 
                   <td  width="15%">来源：</td>
                   <td  width="85%"> 
                     <input type="text" name="postdb[copyfrom]" size="20" value="$rsdb[copyfrom]" id="copyfrom">
@@ -343,10 +347,10 @@ EOT;
                     <input type="checkbox" name="postdb[yz]" value="1" $yz>
                     审核 </span> <span close="0$web_admin$groupdb[SetArticleTopCom]"> 
 <!--                    <input type="checkbox" name="postdb[top]" value="1" $top>
-                    置顶 
+                    置顶 -->
                     <input type="checkbox" name="postdb[levels]" value="1" $levels>
                     推荐 </span> 
-                    <input type="checkbox" name="postdb[target]" value="1" $target>
+                    <!--  <input type="checkbox" name="postdb[target]" value="1" $target>
                     新窗口打开 $baseSpecial-->
                     </td>
                 </tr>

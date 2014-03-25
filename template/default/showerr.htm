@@ -92,7 +92,7 @@ body{
 	color:#9A9A9A;
 }
 </style>
-<title>$webdb[webname]                           powered by www.qibosoft.com</title>
+<title>$webdb[webname]</title>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 </head>
 
@@ -100,7 +100,7 @@ body{
  <SCRIPT LANGUAGE="JavaScript" src="$webdb[www_url]/images/default/inc.js"></SCRIPT>
 <table width="850" border="0" cellspacing="0" cellpadding="0" align="center" id="topTable">
   <tr>
-    <td width="339"><a href="$webdb[www_url]/"><img src="$webdb[www_url]/images/default/logo.gif" border="0" onload="if(self!=top)this.style.display='none';"></a></td>
+    <td width="339"></td>
     <td width="511" align="right" valign="bottom"><a href="$webdb[www_url]/" style="text-decoration: underline;">网站首页</a> 
       | 
 
@@ -158,128 +158,8 @@ document.write('<input type="button" name="Submit" value="点击返回" class="post_
         </tr>
       </table>
     </td>
-    <td width="229" height="296" valign="top">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" height="118" style="border:1px solid #AAAAAA;" id="CenterTable">
-        <tr>
-          <td bgcolor="#FFFFFF" height="274" align="left" valign="top">
-<!--
-EOT;
-if(!$lfjid){print <<<EOT
--->
-		  
-            <table width="90%" border="0" cellspacing="0" cellpadding="0" style="margin:10px;">
-              <form name="form1" method="post" action="$webdb[www_url]/do/login.php">
-                <tr> 
-                  <td><b><font  style="font-size:14px;color:#000000;">登录通行证</font></b></td>
-                </tr>
-                <tr> 
-                  <td > 
-                    <hr style="color:#ccc;width:100%" size=1>
-                  </td>
-                </tr>
-                <tr> 
-                  <td><b><font  style="font-size:14px;color:#BC2931;">请输入帐号和密码</font></b></td>
-                </tr>
-                <tr> 
-                  <td height="32">帐 号: 
-                    <input type="text" name="username" size="15" class="input_bt">
-                  </td>
-                </tr>
-                <tr> 
-                  <td height="32">密 码: 
-                    <input type="password" name="password" size="15" class="input_bt">
-                  </td>
-                </tr>
-                <tr> 
-                  <td align="center"> 
-                    <input type="submit" name="Submit2" value="  登 录  "  class="post_bt">
-					<!--
-EOT;
-if($webdb[QQ_login]){print <<<EOT
--->
-<br><br>
-<A HREF="$webdb[www_url]/do/qq_login.php"><img border=0 src="$webdb[www_url]/images/default/qq_login_big.png"></A>
-<!--
-EOT;
-}print <<<EOT
--->
-                  </td>
-                </tr><input type="hidden" name="step" value="2">
-      <input class="radio" type="hidden" name="cookietime" value="86400" >
-                <tr> 
-                  <td align="right" height="38"><a href="$webdb[www_url]/do/sendpwd.php" style="text-decoration: underline;">忘记密码,取回&gt;&gt;</a></td>
-                </tr>
-                <tr> 
-                  <td align="right" > 
-                    <hr style="color:#ccc;width:100%" size=1>
-                  </td>
-                </tr>
-                <tr> 
-                  <td align="left" height="32" > <font  style="font-size:14px;color:#BC2931;">还没有通行证?</font></td>
-                </tr>
-                <tr> 
-                  <td align="center" > 
-                    <input type="button" name="Submit22" value="  注 册  " class="post_bt" onClick="window.location.href='$webdb[www_url]/do/reg.php';">
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" height="32" >拥有通行证,整个网站畅通无阻!</td>
-                </tr>
-              </form>
-            </table>
-            <!--
-EOT;
-}else{
-$lfjdb[icon]=tempdir($lfjdb[icon]);
-$lfjdb[regdate]=date("Y-m-d H:i",$lfjdb[regdate]);
-$lfjdb[money]=get_money($lfjdb[uid]);
-print <<<EOT
--->
-            <table width="90%" border="0" cellspacing="0" cellpadding="0" style="margin:10px;">
-              <form name="form1" method="post" action="$webdb[www_url]/do/login.php">
-                <tr> 
-                  <td><b><font  style="font-size:14px;color:#000000;">我的资料</font></b></td>
-                </tr>
-                <tr> 
-                  <td > 
-                    <hr style="color:#ccc;width:100%" size=1>
-                  </td>
-                </tr>
-                <tr> 
-                  <td align="center"><a href="$webdb[www_url]/member/homepage.php?uid=$lfjuid" target="_blank"><img src="$lfjdb[icon]" onload="makesmallpic(this,148,148);" width="148" height="148" border="0" onerror="this.src='$webdb[www_url]/images/default/noface.gif'"></a> 
-                  </td>
-                </tr>
-                <tr> 
-                  <td align="center" height="20"><a href="$webdb[www_url]/member/homepage.php?uid=$lfjuid" style="text-decoration: underline;" target="_blank">$lfjid</a></td>
-                </tr>
-                <tr> 
-                  <td align="right" > 
-                    <hr style="color:#ccc;width:100%" size=1>
-                  </td>
-                </tr>
-                <tr> 
-                  <td align="left" height="32" style="line-height:170%;">级别: <b><font color="#FF0000">{$ltitle[$lfjdb[groupid]]}</font></b><br>
-                    {$webdb[MoneyName]}: <img src="$webdb[www_url]/images/default/money.gif"> <b><font color="#0000FF">$lfjdb[money]</font></b> 
-                        {$webdb[MoneyDW]}<br>
-                    
-                    注册日期: $lfjdb[regdate]</td>
-                </tr>
-              </form>
-            </table>
-            <!--
-EOT;
-}print <<<EOT
--->   </td>
-        </tr>
-      </table>
-    </td>
-    <td width="49" height="296" valign="top">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" id="RightTable">
-        <tr>
-          <td>&nbsp;</td>
-        </tr>
-      </table>
-    </td>
+
+
   </tr>
 </table>
 <table width="850" border="0" cellspacing="0" cellpadding="0" align="center" id="footer">
@@ -294,9 +174,7 @@ EOT;
   <tr>
     <td align="center">$webdb[copyright]<br>
       Copyright@{$webdb[www_url]} all rights reserved <a href="http://www.miibeian.gov.cn" target="_blank">{$webdb[miibeian_gov_cn]}</a> 
-      <br>
-      Powered by <a href="http://www.qibosoft.com" target="_blank">qibosoft {$qibosoft_Edition}</a> 
-      Code &copy; 2003-10 <a href="http://bbs.qibosoft.com/" target="_blank">qibosoft</a> </td>
+	</td>
   </tr>
 </table>
 <SCRIPT LANGUAGE="JavaScript">

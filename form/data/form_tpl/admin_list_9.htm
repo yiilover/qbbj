@@ -25,7 +25,7 @@ EOT;
       <td width="11%" align="center">用户</td>
       <td width="11%" align="center">日期</td>
 	  <td width="7%" align="center">$fidDB[statename]</td>
-      <td width="17%" align="center">查看 / 修改 / 删除</td>
+      <td width="17%" align="center">查看  / 删除</td>
     </tr>
     <!--
 EOT;
@@ -57,7 +57,7 @@ EOT;
 print <<<EOT
 --></td>
       <td width="17%" align="center"><a href="$admin_path&job=view&mid=$rs[mid]&id=$rs[id]"><img src="../member/images/icon_view.gif" border="0"></a> &#160;
-        <a href="../$dirname/form.php?lfj=$lfj&job=edit&id=$rs[id]&mid=$rs[mid]" target="_blank"><img alt='点击修改' src='../member/images/button_edit.png' border=0></a>  &#160;
+   &#160;
         <a href="$admin_path&action=delete&id=$rs[id]" onClick="return confirm('删除后不可恢复,你确实要删除吗?')"><img alt='点击删除' src='../member/images/del_icon2.gif' border=0></a></td>
     </tr>
     <!--

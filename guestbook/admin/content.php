@@ -75,4 +75,34 @@ elseif($action=="reply")
 	$db->query("UPDATE `{$_pre}content` SET reply='$content' WHERE id='$id'");
 	jump("修改成功","$FROMURL",1);
 }
+elseif($job=="download")
+{
+    $rsdb=$db->get_one("SELECT * FROM `{$_pre}content` WHERE id='$id' ");
+    $syspath =ROOT_PATH.$webdb[updir].'/';
+    $r = explode('/',$rsdb[attachurl]);
+    $filepath = $syspath.$r[0].'/';
+    $filename = $r[1];
+    downfile($filepath,$filename);
+}
+function downfile($file_dir,$file_name)
+{
+    if (!file_exists($file_dir . $file_name))
+    {
+        echo "找不到文件";
+        exit;
+    }
+    else
+    {
+        $file = fopen($file_dir . $file_name,"rb");
+        //输入文件标签
+        Header("Content-type: application/file");
+        Header("Accept-Ranges: bytes");
+        Header("Accept-Length: ".filesize($file_dir . $file_name));
+        Header("Content-Disposition: attachment; filename=" . $file_name);
+        //输出文件内容
+        echo fread($file,filesize($file_dir . $file_name));
+        fclose($file);
+        exit;
+    }
+}
 ?>
