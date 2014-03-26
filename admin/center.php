@@ -470,26 +470,6 @@ elseif($job=="map")
 }
 
 elseif($job=='GetOfficialNotice'){
-	$OfficialUrl2='soft.com';
-	$OfficialUrl1='www.qibo';
-	$files=read_file("template/map.htm");
-	if(!strstr($files,'$OfficialNotice')&&filesize(ROOT_PATH."cache/OfficialNotice.txt")>9){
-		echo "<SCRIPT LANGUAGE='JavaScript'>
-			<!--
-			function openwindows(){
-				window.open('http://$OfficialUrl1$OfficialUrl2/OfficialNotice.php?E=$qibosoft_Edition&upgrade_Record=$webdb[upgrade_Record]');
-				}
-			openwindows();
-			//-->
-		</SCRIPT>";
-	}if( !@copy("http://$OfficialUrl1$OfficialUrl2/OfficialNotice.php?E=$qibosoft_Edition&upgrade_Record=$webdb[upgrade_Record]&U=$webdb[www_url]&T=CMS",ROOT_PATH."cache/OfficialNotice.txt") )
-	{
-		if(!$OfficialNotice=file_get_contents("http://$OfficialUrl1$OfficialUrl2/OfficialNotice.php?E=$qibosoft_Edition&upgrade_Record=$webdb[upgrade_Record]&U=$webdb[www_url]&T=CMS"))
-		{
-			$OfficialNotice=sockOpenUrl("http://$OfficialUrl1$OfficialUrl2/OfficialNotice.php?E=$qibosoft_Edition&upgrade_Record=$webdb[upgrade_Record]&U=$webdb[www_url]&T=CMS");
-		}
-		write_file(ROOT_PATH."cache/OfficialNotice.txt",$OfficialNotice);
-	}
-	exit;}
+}
 phpinfo();
 ?>
