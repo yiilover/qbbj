@@ -51,11 +51,11 @@ foreach($goods as $rs){
 print <<<EOT
 -->
                 <tr>
-                    <td height="30">&nbsp;</td>
+                    <td height="30">$rs[goods_sn]</td>
                     <td>$rs[title]</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td>$rsdb[goods_num]</td>
+                    <td>$rsdb[goods_spe]</td>
+                    <td>$rsdb[goods_remark]</td>
                 </tr>
 <!--
 EOT;
@@ -157,7 +157,17 @@ print <<<EOT
                 <!--<label>上传:</label>-->
                 <!--<label for="fileField"></label>-->
                 <!--<input type="file" name="fileField" id="fileField" />-->
+<!--
+EOT;
+if($rsdb[attachurl]){
+print <<<EOT
+-->
                 <a href="/admin/index.php?lfj=module_admin&dirname=guestbook&file=content&job=download&id=$rsdb[id]" target="_blank">下载附件</a>
+<!--
+EOT;
+}
+print <<<EOT
+-->
             </div>
         </fieldset>
         <input type="hidden" name="postdb[ofid]" value="$ofid">

@@ -92,7 +92,7 @@ if($step=="post"){
 
     /*发送邮件程序*/
     require_once('phpmailer/class.phpmailer.php');
-    $content .= "公司名称:".$postdb[companyname]."<br>联系人:".$postdb[truename]."<br>电子邮件:".$postdb[email]."<br>联系电话:".$postdb[phone]."<br>交货期:".$postdb[deadline]."<br>commodity code:".$postdb[goods_sn]."<br>name of commodity:".$postdb[title]."<br>number:".$postdb[goods_num]."<br>specification:".$postdb[specification]."<br>remarks:".$postdb[goods_remark]."<br>询价中需要说明的要求1:".$postdb[attach1]."<br>询价中需要说明的要求2:".$postdb[attach2]."<br>询价中需要说明的要求3:".$postdb[attach3];
+    $content .= "公司名称:".$postdb[companyname]."<br>联系人:".$postdb[truename]."<br>电子邮件:".$postdb[email]."<br>联系电话:".$postdb[phone]."<br>交货期:".$postdb[deadline]."<br>commodity code:".$postdb[goods_sn]."<br>name of commodity:".$postdb[title]."<br>number:".$postdb[goods_num]."<br>specification:".$postdb[goods_spe]."<br>remarks:".$postdb[goods_remark]."<br>询价中需要说明的要求1:".$postdb[attach1]."<br>询价中需要说明的要求2:".$postdb[attach2]."<br>询价中需要说明的要求3:".$postdb[attach3];
     $content = iconv('GBK','UTF-8',$content);
     send_email($content);
 
