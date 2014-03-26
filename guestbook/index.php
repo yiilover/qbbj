@@ -193,8 +193,14 @@ $ch_fid	= $ch_pagetype = 0;
 $ch_module = $webdb[module_id]?$webdb[module_id]:7;
 @include(ROOT_PATH."inc/label_module.php");
 
+if($fid==1){
+    $Tpl = getTpl("index");
+}elseif($fid==2){
+    $Tpl = getTpl("index2");
+}
+
 require(ROOT_PATH."inc/head.php");
-require(getTpl("index"));
+require($Tpl);
 require(ROOT_PATH."inc/foot.php");
 
 function get_query_goods($ofid='',$aid=''){
